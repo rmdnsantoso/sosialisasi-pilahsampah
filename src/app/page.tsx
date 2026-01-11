@@ -126,12 +126,16 @@ const CleaningMission = () => {
               {trash.map((item) => (
                 <motion.button
                   key={item.id}
-                  initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}
+                  initial={{ scale: 0 }} 
+                  // --- PERBAIKAN ERROR DI SINI ---
+                  // Menggabungkan properti animate menjadi satu kondisi
+                  animate={item.move ? { scale: 1, x: [0, 30, -30, 0], y: [0, -30, 30, 0] } : { scale: 1 }}
+                  // -------------------------------
+                  exit={{ scale: 0 }}
                   whileHover={{ scale: 1.2 }}
                   onClick={() => clean(item.id)}
                   className="absolute text-5xl cursor-pointer z-20 outline-none"
                   style={{ left: `${item.x}%`, top: `${item.y}%` }}
-                  animate={item.move ? { x: [0, 30, -30, 0], y: [0, -30, 30, 0] } : {}}
                   transition={item.move ? { repeat: Infinity, duration: 3 } : {}}
                 >
                   {item.icon}
@@ -189,7 +193,7 @@ const Navbar = () => (
       <div className="w-10 h-10 bg-emerald-700 rounded-xl flex items-center justify-center text-white font-bold shadow-md">SD</div>
       <div className="flex flex-col">
         <span className="font-bold text-emerald-900 text-sm md:text-base leading-tight">SD Negeri 2 Bandarejo</span>
-        <span className="text-[10px] text-emerald-600 font-medium tracking-wide">Natar, Lampung Selatan</span>
+        <span className="text-[10px] text-emerald-600 font-medium tracking-wide">Desa Bandarejo, Natar, Lampung Selatan</span>
       </div>
     </div>
     <div className="hidden md:flex gap-8 text-sm font-bold text-slate-500">
@@ -472,7 +476,7 @@ export default function Home() {
           <div className="h-px w-24 bg-emerald-700 mx-auto mb-8"></div>
           
           <p className="text-xs md:text-sm">
-            © 2026 Program Kerja Sosialiasi Pemilahan Sampah. Dibuat dengan ❤️ untuk SD Negeri 2 Bandarejo.
+            © 2026 Program Kerja Sosialisasi Pemilahan Sampah. Dibuat dengan ❤️ untuk SD Negeri 2 Bandarejo.
           </p>
         </div>
       </footer>
